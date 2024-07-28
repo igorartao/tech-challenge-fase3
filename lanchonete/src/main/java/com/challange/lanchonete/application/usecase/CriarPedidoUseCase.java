@@ -1,26 +1,24 @@
-package com.challange.lanchonete.application.service;
+package com.challange.lanchonete.application.usecase;
 
 import com.challange.lanchonete.domain.*;
 import com.challange.lanchonete.domain.exception.ResourceNotFoundException;
-import com.challange.lanchonete.domain.repository.ClienteRepository;
-import com.challange.lanchonete.domain.repository.PedidoRepository;
-import com.challange.lanchonete.domain.repository.ProdutoPedidoRepository;
-import com.challange.lanchonete.domain.repository.ProdutoRepository;
-import com.challange.lanchonete.domain.service.PedidoService;
+import com.challange.lanchonete.infrastructure.repository.ClienteRepository;
+import com.challange.lanchonete.infrastructure.repository.PedidoRepository;
+import com.challange.lanchonete.infrastructure.repository.ProdutoPedidoRepository;
+import com.challange.lanchonete.infrastructure.repository.ProdutoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class PedidoServiceImpl implements PedidoService {
+public class CriarPedidoUseCase implements ICriarPedidoUseCase {
 
-    private static final Logger log = LoggerFactory.getLogger(PedidoServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(CriarPedidoUseCase.class);
+
     @Autowired
     private PedidoRepository pedidoRepository;
 
@@ -33,15 +31,19 @@ public class PedidoServiceImpl implements PedidoService {
     @Autowired
     private ProdutoPedidoRepository produtoPedidoRepository;
 
-    @Override
-    public Pedido criarPedido(PedidoRequest pedidoRequest) {
+    @Autowired
+    public CriarPedidoUseCase(PedidoRepository pedidoRepository) {
+        this.pedidoRepository = pedidoRepository;
+    }
 
+    @Override
+    public Pedido execute(PedidoRequest pedidoRequest) {
         Pedido pedido = new Pedido();
 
         Cliente cliente = clienteRepository.findById(pedidoRequest.getClienteId())
                 .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
         pedido.setCliente(cliente);
-        pedido.setStatus(StatusPedido.RECEBIDO); // Substitua por seu status inicial
+        pedido.setStatus(StatusPedido.RECEBIDO);
         pedido.setProdutos(new ArrayList<>());
 
         pedido = pedidoRepository.save(pedido);
@@ -72,10 +74,5 @@ public class PedidoServiceImpl implements PedidoService {
         }
 
         return pedido;
-    }
-
-    @Override
-    public List<Pedido> listarPedidos() {
-        return pedidoRepository.findAll();
     }
 }

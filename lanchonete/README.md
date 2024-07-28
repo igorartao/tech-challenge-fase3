@@ -8,6 +8,10 @@ Este é um projeto Java Spring Boot desenvolvido para uma lanchonete. O objetivo
 - Possibilitar o acompanhamento do status do pedido em tempo real.
 - Gerenciar clientes, produtos e pedidos.
 
+## Arquitetura
+
+Arquivo MHT contendo a proposta de arquitetura do projeto em src/main/resources/static.
+
 ## Iniciando o Projeto Localmente
 
 Para iniciar o projeto localmente, você pode usar Docker e Docker Compose para facilitar a configuração do ambiente.
@@ -41,6 +45,10 @@ As demais dependências (JDK, MySQL, nc), serão atendidas via docker compose.
     ```
 
 4. Após a conclusão do build e start, a aplicação estará disponível em [http://localhost:8080](http://localhost:8080).
+
+### Collections
+
+Collections de todas as apis desenvolvidas estão armazenadas na raís do projeto, no diretório postman. Sendo que as requisições, estarão em ordem de execução ao importar as collections.
 
 ### Swagger
 

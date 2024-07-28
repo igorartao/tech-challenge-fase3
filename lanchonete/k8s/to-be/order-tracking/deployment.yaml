@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-tracking-deployment
+  namespace: lanchonete
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order-tracking
+  template:
+    metadata:
+      labels:
+        app: order-tracking
+    spec:
+      containers:
+      - name: order-tracking
+        image: your-order-tracking-image:latest
+        ports:
+        - containerPort: 8082

@@ -26,6 +26,10 @@ public class Pedido {
     @Column(nullable = false)
     private StatusPedido status;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatusPagamento statusPagamento;
+
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Produto> produtos;
 }

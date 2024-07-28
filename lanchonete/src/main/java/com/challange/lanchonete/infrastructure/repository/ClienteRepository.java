@@ -1,4 +1,4 @@
-package com.challange.lanchonete.domain.repository;
+package com.challange.lanchonete.infrastructure.repository;
 
 import com.challange.lanchonete.domain.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "b3330461-911b-4cc9-a0d3-38a14f3b7aa3",
+		"name": "ClienteController",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11431347"
+	},
+	"item": [
+		{
+			"name": "Cadastrar Cliente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"João Silva\",\n  \"endereco\": \"R dos Milagres, 88\",\n  \"cpf\": \"12345678900\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Identificar Cliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/{cpf}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"{cpf}"
+					],
+					"variable": [
+						{
+							"key": "cpf",
+							"value": "12345678900"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

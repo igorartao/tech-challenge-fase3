@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS pedido (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     cliente_id BIGINT,
     status ENUM('RECEBIDO', 'EM_PREPARACAO', 'PRONTO', 'FINALIZADO'),
+    statusPagamento ENUM('PENDENTE', 'PAGO'),
     FOREIGN KEY (cliente_id) REFERENCES cliente(id)
 );
 
