@@ -8,6 +8,10 @@ Este é um projeto Java Spring Boot desenvolvido para uma lanchonete. O objetivo
 - Possibilitar o acompanhamento do status do pedido em tempo real.
 - Gerenciar clientes, produtos e pedidos.
 
+## Apresentação Arquitetura - Youtube
+
+https://youtu.be/YMH-f1-Dpbs
+
 ## Iniciando o Projeto Localmente
 
 Para iniciar o projeto localmente, você pode usar Docker e Docker Compose para facilitar a configuração do ambiente.
