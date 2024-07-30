@@ -12,6 +12,7 @@ Este é um projeto Java Spring Boot desenvolvido para uma lanchonete. O objetivo
 
 Arquivo MHT contendo a proposta de arquitetura do projeto em src/main/resources/static.
 Vídeo de apresentação da arquitetura proposta em https://youtu.be/YMH-f1-Dpbs
+
 ## Iniciando o Projeto Localmente
 
 Para iniciar o projeto localmente, você pode usar Docker e Docker Compose para facilitar a configuração do ambiente.
