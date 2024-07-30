@@ -1,7 +1,12 @@
 FROM openjdk:17-jdk-slim
 
-# instalei o netcat pra possibilitar a execução do script waiting.sh
-RUN apt-get update && apt-get install -y netcat
+RUN apt-get update && apt-get install -y maven netcat
+
+COPY src /usr/src/app/src
+COPY pom.xml /usr/src/app
+
+WORKDIR /usr/src/app
+RUN mvn clean package
 
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
