@@ -1,0 +1,40 @@
+name: Deploy lanchonete Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean package
+
+      - name: Build Docker image
+        run: docker build -t lanchonete:latest .
+
+      - name: Log in to Docker Hub
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Tag Docker image
+        run: docker tag lanchonete:latest ${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
+
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl set image deployment/lanchonete-deployment lanchonete=${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
