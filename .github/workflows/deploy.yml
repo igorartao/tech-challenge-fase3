@@ -35,8 +35,8 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
 
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl set image deployment/lanchonete-deployment lanchonete=${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+#     - name: Deploy to Kubernetes
+#        run: |
+#          kubectl set image deployment/lanchonete-deployment lanchonete=${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
+#        env:
+#          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
