@@ -41,6 +41,12 @@ jobs:
       - name: Decode Kube config
         run: echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
 
+      - name: Configure AWS CLI
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region sa-east-1
+
       - name: Deploy to Kubernetes
         run: |
           kubectl set image deployment/lanchonete-deployment lanchonete=${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
