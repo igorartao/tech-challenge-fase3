@@ -47,6 +47,10 @@ jobs:
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws configure set default.region sa-east-1
 
+      - name: Update kubeconfig for EKS
+        run: |
+          aws eks update-kubeconfig --name lanchonete-cluster --region sa-east-1
+
       - name: Deploy to Kubernetes
         run: |
           kubectl set image deployment/lanchonete-deployment lanchonete=${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
