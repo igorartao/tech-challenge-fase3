@@ -35,8 +35,12 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
 
+      - name: Set up Kubeconfig
+        run: echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
+
+      - name: Check Kubernetes connection
+        run: kubectl get pods
+
       - name: Deploy to Kubernetes
         run: |
           kubectl set image deployment/lanchonete-deployment lanchonete=${{ secrets.DOCKER_USERNAME }}/lanchonete:latest
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
