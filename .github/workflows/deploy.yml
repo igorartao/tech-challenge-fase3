@@ -49,9 +49,9 @@ jobs:
 
       - name: Update kubeconfig for EKS
         run: |
-          aws eks update-kubeconfig --name your-cluster-name --region sa-east-1
-          kubectl config view # Verifique a configuração do kubectl
-          kubectl get nodes # Verifique se você pode se conectar ao cluster
+          aws eks update-kubeconfig --name lanchonete-cluster --region sa-east-1
+          kubectl config view
+          kubectl get nodes
 
       - name: Deploy to Kubernetes
         run: |
